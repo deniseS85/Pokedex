@@ -1,7 +1,33 @@
+@font-face {
+    font-family: 'Pokemon';
+    src:  url('fonts/PokemonHollow.ttf') format('ttf'),
+}
+
 body {
     margin: 0;
     font-family: 'Raleway', sans-serif;
-    background-color: rgba(48,167,215,0.3);
+    background-color: rgb(192,192,192);
+}
+
+:root {
+    --green: rgb(71, 209, 178);
+    --red: rgb(252, 109, 109);
+    --yellow: rgb(255, 214, 111);
+    --blue: rgb(119, 189, 254);
+    --purple: rgb(88, 86, 214);
+    --ochre: rgb(150, 150, 121);
+    --pink: rgb(187, 48, 205);
+    --brown: rgb(120, 48, 1);
+    --rosa: rgb(255, 168, 218);
+    --lightgreen: rgb(143, 238, 218);;
+    --lightred: rgb(236, 166, 166);;
+    --lightyellow: rgb(244, 237, 150);;
+    --lightblue: rgb(173, 207, 239);;
+    --lightpurple: rgb(170, 168, 240);
+    --lightochre: rgb(203, 203, 166);
+    --lightpink: rgb(223, 142, 234);
+    --lightbrown: rgb(234, 151, 97);
+    --lightrosa: rgb(246, 221, 235);  
 }
 
 .d-none {
@@ -9,32 +35,43 @@ body {
 }
 
 .header {
+    font-family: 'Pokemon Hollow';
+    position: fixed;
+    width: 100vw;
+    height: 100px;
     display: flex;
     justify-content: center;
-    background-color: rgb(48,167,215);
+    align-items: center;
+    background-color: rgb(48, 47, 47);
     color: white;
-    text-shadow: 2px 2px 4px darkblue;
+    text-shadow: 3px 3px 6px silver;
     letter-spacing: 2px;
-    font-size: 22px;
-    box-shadow: 3px 3px 5px rgb(112, 111, 111);
+    font-size: 25px;
+    box-shadow: 5px 5px 20px rgb(112, 111, 111);
+    z-index: 999;
 }
 
 .card-container {
-    padding: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 125px 100px 50px 100px;
 }
 
 .card {
     height: 150px;
     width: 200px;
-    background-color: rgb(71,209,178);
     color: white;
     padding: 10px 20px;
+    margin: 20px;
     display: flex;
     align-items: center;
     flex-direction: column;
     border-radius: 20px;
     border: 1px solid rgb(54, 161, 138);
     box-shadow: 3px 3px 6px grey;
+    cursor: pointer;
 }
 
 h2 {
@@ -63,7 +100,6 @@ h2 {
 
 .img-bg {
     border-radius: 50%;
-    background-color:  rgb(150, 238, 219);
     box-shadow: inset -8px 0px 8px grey;
 }
 
@@ -104,8 +140,8 @@ h2 {
     border-radius: 15px;
     height: 650px;
     width: 430px;
-    -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.5);
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .headline-card {
