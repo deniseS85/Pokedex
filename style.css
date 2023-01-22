@@ -1,0 +1,115 @@
+body {
+    margin: 0;
+    font-family: 'Raleway', sans-serif;
+    background-color: rgba(48,167,215,0.3);
+}
+
+.d-none {
+    display: none;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    background-color: rgb(48,167,215);
+    color: white;
+    text-shadow: 2px 2px 4px darkblue;
+    letter-spacing: 2px;
+    font-size: 22px;
+    box-shadow: 3px 3px 5px rgb(112, 111, 111);
+}
+
+.card-container {
+    padding: 50px;
+}
+
+.card {
+    height: 150px;
+    width: 200px;
+    background-color: rgb(71,209,178);
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 20px;
+    border: 1px solid rgb(54, 161, 138);
+    box-shadow: 3px 3px 6px grey;
+}
+
+h2 {
+    margin: 0;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 2px gray;
+    text-transform: capitalize; 
+}
+
+.card-content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.pokeImg {
+    width: 142px;
+    margin-top: -33px;
+    margin-left: -23px;
+    cursor: pointer;
+    transition: transform .3s;
+}
+
+.pokeImg:hover {
+    transform: scale(1.4); 
+}
+
+.img-bg {
+    border-radius: 50%;
+    background-color:  rgb(150, 238, 219);
+    box-shadow: inset -8px 0px 8px grey;
+}
+
+.imageInfo {
+    display: flex;
+    justify-content: space-between;
+}
+
+.info-type {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin-right: 28px;
+}
+
+.type1, .type2{
+    background-color: rgb(150, 238, 219);
+    border-radius: 10px;
+    padding: 5px 10px;
+    text-shadow: 1px 1px 2px rgb(81, 80, 80);
+}
+
+.infoContainer {
+   position: fixed;
+   background-color: rgb(48,167,215);
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 100vh;
+   top: 0;
+   right: 0;
+   left: 0;
+   bottom: 0;
+}
+
+.info-card {
+    background-color: white;
+    border-radius: 15px;
+    height: 650px;
+    width: 430px;
+    -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.headline-card {
+    z-index: 1;
+    text-shadow: 1px 1px 2px gray;
+    text-transform: capitalize; 
+}
