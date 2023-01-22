@@ -1,13 +1,12 @@
 let currentPokemon = [];
-let pokemon;
 
 async function loadAllPokemon() {
 
     for (let i = 1; i < 51; i++) {
         let url = `https://pokeapi.co/api/v2/pokemon/${i}`;
         let response = await fetch(url);
-        allPokemon = await response.json();
-        currentPokemon.push(allPokemon); 
+        let pokemon = await response.json();
+        currentPokemon.push(pokemon); 
     }
     renderPokemonInfo();
 }
@@ -25,17 +24,20 @@ function renderPokemonInfo() {
 
 function generateHTMLCard() {
     return /*html*/ `
-        <div class="card" id="card" style="background-color:${changeBg()}">
+        <div class="card" id="card" style="background-color:${changeBg()}; box-shadow:${changeBoxShadow()}">
+        <div class="headline">
             <h2>${pokemon['name']}</h2>
+            <h2>${getIndex()}</h2>
+        </div>
             <div class="card-content">
                 <div class="info-type">
-                    <div class="type1" style="background-color:${changeBgImg()}">${pokemon['types'][0]['type']['name']}</div>
-                    <div class="type1">
+                    <div class="type1" style="background-color:${changeBgItems()}">${pokemon['types'][0]['type']['name']}</div>
+                    <div class="type1"style="background-color:${changeBgItems()}"></div>
                 </div>
-            </div>
-            <div class="imageInfo">
-                <div class="img-bg" style="background-color:${changeBgImg()}">
-                    <img class="pokeImg" src="${pokemon['sprites']['other']['home']['front_default']}">
+                <div class="imageInfo">
+                    <div class="img-bg" style="background-color:${changeBgItems()}">
+                        <img class="pokeImg" src="${pokemon['sprites']['other']['home']['front_default']}">
+                    </div>
                 </div>
             </div>
         </div>`;
@@ -73,7 +75,7 @@ function changeBg() {
     }
 }
 
-function changeBgImg() {
+function changeBgItems() {
     let type = pokemon['types'][0]['type']['name'];
 
     if (type == 'grass') {
@@ -104,25 +106,44 @@ function changeBgImg() {
          return 'var(--lightrosa)';
      }
 }
- 
-    
-/* 
 
-async function loadPokemon() {
-    let url = 'https://pokeapi.co/api/v2/pokemon/bulbasaur';
-    let response = await fetch(url);
-    currentPokemon = await response.json();
-   
-    renderPokemonInfo();
+function changeBoxShadow() {
+    let type = pokemon['types'][0]['type']['name'];
+
+    if (type == 'grass') {
+        return '-2px -2px 20px 2px var(--lightgreen), 2px 2px 20px 2px var(--lightgreen);';
+     } 
+     if (type == 'fire') {
+         return '-2px -2px 20px 2px var(--lightred), 2px 2px 20px 2px var(--lightred);';
+     }
+     if (type == 'water') {
+         return '-2px -2px 20px 2px var(--lightblue), 2px 2px 20px 2px var(--lightblue);';
+     }
+     if (type == 'bug') {
+         return '-4px -4px 20px 4px var(--lightpurple), 4px 4px 20px 4px var(--lightpurple);';
+     }
+     if (type == 'electric') {
+         return '-2px -2px 20px 2px var(--lightyellow), 2px 2px 20px 2px var(--lightyellow);';
+     }
+     if (type == 'normal') {
+         return '-2px -2px 20px 2px var(--lightochre), 2px 2px 20px 2px var(--lightochre);';
+     }
+     if (type == 'poison') {
+         return '-2px -2px 20px 2px var(--lightpink), 2px 2px 20px 2px var(--lightpink);';
+     }
+     if (type == 'ground') {
+         return '-1px -1px 20px 1px var(--lightbrown), 1px 1px 20px 1px var(--lightbrown);';
+     }
+     if (type == 'fairy') {
+         return '-2px -2px 20px 2px var(--lightrosa), 2px 2px 20px 2px var(--lightrosa);';
+     }
 }
+function getIndex() {
+    let index = pokemon['id'];
+    if (index < 10) {
+        return '#00' + index;
+    } else {
+        return '#0' + index;
+    }
 
-function renderPokemonInfo() {
-    let card = document.getElementById('card');
-    card.querySelector('.pokedex').innerHTML = currentPokemon['name'];
-    card.querySelector('.pokeImg').src = currentPokemon['sprites']['other']['home']['front_default'];
-    card.querySelector('.type1').innerHTML = currentPokemon['types'][0]['type']['name'];
-    card.querySelector('.type2').innerHTML = currentPokemon['types'][1]['type']['name'];
-    
-    console.log(currentPokemon);
-} */
-
+}

@@ -20,13 +20,13 @@ body {
     --brown: rgb(120, 48, 1);
     --rosa: rgb(255, 168, 218);
     --lightgreen: rgb(143, 238, 218);;
-    --lightred: rgb(236, 166, 166);;
+    --lightred: rgb(252, 168, 168);;
     --lightyellow: rgb(244, 237, 150);;
     --lightblue: rgb(173, 207, 239);;
-    --lightpurple: rgb(170, 168, 240);
-    --lightochre: rgb(203, 203, 166);
-    --lightpink: rgb(223, 142, 234);
-    --lightbrown: rgb(234, 151, 97);
+    --lightpurple: rgb(179, 177, 248);
+    --lightochre: rgb(231, 231, 188);
+    --lightpink: rgb(242, 175, 250);
+    --lightbrown: rgb(241, 174, 130);
     --lightrosa: rgb(246, 221, 235);  
 }
 
@@ -60,8 +60,8 @@ body {
 }
 
 .card {
-    height: 150px;
-    width: 200px;
+    height: 160px;
+    width: 220px;
     color: white;
     padding: 10px 20px;
     margin: 20px;
@@ -70,8 +70,6 @@ body {
     flex-direction: column;
     border-radius: 20px;
     border: 1px solid rgb(54, 161, 138);
-    box-shadow: 3px 3px 6px grey;
-    cursor: pointer;
 }
 
 h2 {
@@ -86,6 +84,13 @@ h2 {
     justify-content: space-between;
 }
 
+.headline {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 10px;
+}
 .pokeImg {
     width: 142px;
     margin-top: -33px;
