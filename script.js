@@ -30,10 +30,7 @@ function generateHTMLCard() {
             <h2>${getIndex()}</h2>
         </div>
             <div class="card-content">
-                <div class="info-type">
-                    <div class="type1" style="background-color:${changeBgItems()}">${pokemon['types'][0]['type']['name']}</div>
-                    <div class="type1"style="background-color:${changeBgItems()}"></div>
-                </div>
+                <div class="info-type">${gettype()}</div>
                 <div class="imageInfo">
                     <div class="img-bg" style="background-color:${changeBgItems()}">
                         <img class="pokeImg" src="${pokemon['sprites']['other']['home']['front_default']}">
@@ -138,6 +135,7 @@ function changeBoxShadow() {
          return '-2px -2px 20px 2px var(--lightrosa), 2px 2px 20px 2px var(--lightrosa);';
      }
 }
+
 function getIndex() {
     let index = pokemon['id'];
     if (index < 10) {
@@ -146,4 +144,13 @@ function getIndex() {
         return '#0' + index;
     }
 
+}
+
+function gettype() {
+    let infoType = '';
+    for (let i = 0; i < pokemon['types'].length; i++) {
+        infoType += /*html*/ `
+            <div class="type1" style="background-color:${changeBgItems()}">${pokemon['types'][i]['type']['name']}</div>`;
+        }
+        return infoType;
 }
