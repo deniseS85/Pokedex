@@ -24,81 +24,6 @@ function renderPokemonInfo() {
     }   
 }
 
-function generateHTMLCard() {
-    return /*html*/ `
-        <div class="card" style="background-color:${changeBg()}; box-shadow:${changeBoxShadow()}">
-            <div class="headline">
-                <h2>${pokemon['name']}</h2>
-                <h2>${getIndex()}</h2>
-            </div>
-            <div class="card-content">
-                <div class="info-type">${getType()}</div>
-                <div class="imageInfo">
-                    <div class="img-bg" style="background-color:${changeBgItems()}">
-                        <img onclick="openOverlay(this)" class="pokeImg" src="${pokemon['sprites']['other']['home']['front_default']}">
-                    </div>
-                </div>
-            </div>
-            ${generateHTMLInfoCard()}`;
-}
-
-function generateHTMLInfoCard() {
-    return /*html*/ `
-        <div class="infoOverlay" style="display: none;">
-            <div class="info-card" style="background-color:${changeBg()}">
-                <div class="headlineInfoCard">
-                    <img class="arrow" onclick="closeOverlay(this)" src="img/arrow.png">
-                    <img onclick="changeHeartIcon(this)" class="heart" src="img/heart.png">
-                </div>
-                <div class="namePokemon">
-                    <h2 class="name">${pokemon['name']}</h2>
-                    <h2>${getIndex()}</h2>
-                </div>
-                <div class="type">${getType()}</div>
-                <img class="imgInfoCard" src="${pokemon['sprites']['other']['home']['front_default']}">
-                ${generateHTMLDataCard()}
-            </div>
-        </div>`;
-}
-
-function generateHTMLDataCard() {
-    return /*html*/ `
-        <div class="data-card">
-            <nav>
-                <a href="#">About</a>
-                <a href="#">Base Stats</a>
-                <a href="#">Evolution</a>
-                <a href="#">Moves</a>
-            </nav>
-            <table>
-                <tr>
-                    <td>Species</td>
-                    <td>${pokemon['species']['genera']['7']['genus']}</td>
-                </tr>
-                <tr>
-                    <td>Height</td>
-                    <td>${pokemon['height']/10} m</td>
-                </tr>
-                <tr>
-                    <td>Weight</td>
-                    <td>${pokemon['weight']/10} kg</td>
-                </tr>
-                <tr>
-                    <td>Abilities</td>
-                    ${getAbility()}
-                </tr>
-                <tr>
-                    <td><b>Breeding</b></td>
-                </tr>
-                <tr>
-                    <td>Egg Groups</td>
-                    ${getEggGroup()}
-                </tr>
-            </table>
-        </div>
-    </div>`;
-}
-
 function changeBg() {
     let type = pokemon['types'][0]['type']['name'];
 
@@ -230,6 +155,26 @@ function getEggGroup() {
             <td>${pokemon['species']['egg_groups'][i]['name']}</td>`
     }
     return eggGroup;
+}
+
+function getStats() {
+    let stats = '';
+    for (let i = 0; i < pokemon['stats'].length; i++) {
+
+        stats += /*html*/ `
+            <div class="statsContainer">
+                <div class="contentLeft">
+                    <div class="statsText">${pokemon['stats'][i]['stat']['name']}</div>
+                </div>
+                <div class="contentRight">
+                    <div class="statsNumber">${pokemon['stats'][i]['base_stat']}</div>
+                </div>
+                <div class="progressbar">
+                    <div style="width:${pokemon['stats'][i]['base_stat']}%"></div>
+                </div>
+            </div>`;
+    }
+    return stats;
 }
 
 function changeHeartIcon(el) {
