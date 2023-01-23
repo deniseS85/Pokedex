@@ -162,12 +162,12 @@ function getStats() {
     for (let i = 0; i < pokemon['stats'].length; i++) {
 
         stats += /*html*/ `
-            <div class="statsContainer">
+            <div class="statsContainer" style="display:none">
                 <div class="contentLeft">
                     <div class="statsText">${pokemon['stats'][i]['stat']['name']}</div>
                 </div>
                 <div class="contentRight">
-                    <div class="statsNumber">${pokemon['stats'][i]['base_stat']}</div>
+                    <div class="statsNumber">${pokemon['stats'][i]['base_stat']}%</div>
                 </div>
                 <div class="progressbar">
                     <div style="width:${pokemon['stats'][i]['base_stat']}%"></div>
@@ -175,6 +175,15 @@ function getStats() {
             </div>`;
     }
     return stats;
+}
+
+function getMoves() {
+    let moves = '';
+    for (let i = 0; i < pokemon['moves'].length; i++) {
+        moves += /*html*/ `
+        <div class="moves">${pokemon['moves'][i]['move']['name']}</div>`;
+    }
+    return moves;
 }
 
 function changeHeartIcon(el) {
@@ -200,4 +209,40 @@ function closeOverlay(el) {
     overlay.style.display = 'none';
     document.getElementById('header').style.display = '';
     document.body.style.overflow = '';
+}
+
+function showStats(el) {
+    let stabsContainer = el.closest('.data-card').querySelectorAll('.statsContainer');
+    el.closest('.data-card').querySelector('.tableAbout').style.display = 'none';
+    el.closest('.data-card').querySelector('.moveContainer').style.display = 'none';
+
+    for (let i = 0; i < stabsContainer.length; i++) {
+        stabsContainer[i].style.display = 'flex';
+        
+    }
+}
+
+function showMoves(el) {
+    let stabsContainer = el.closest('.data-card').querySelectorAll('.statsContainer');
+    el.closest('.data-card').querySelector('.moveContainer').style.display = 'flex';
+    el.closest('.data-card').querySelector('.statsContainer').style.display = 'none';
+    el.closest('.data-card').querySelector('.tableAbout').style.display = 'none';
+
+    for (let i = 0; i < stabsContainer.length; i++) {
+        stabsContainer[i].style.display = 'none';
+        
+    }
+}
+
+function showAbout(el) {
+    let stabsContainer = el.closest('.data-card').querySelectorAll('.statsContainer');
+    el.closest('.data-card').querySelector('.tableAbout').style.display = 'flex';
+    el.closest('.data-card').querySelector('.moveContainer').style.display = 'none';
+    el.closest('.data-card').querySelector('.statsContainer').style.display = 'none';
+
+    for (let i = 0; i < stabsContainer.length; i++) {
+        stabsContainer[i].style.display = 'none';
+        
+    }
+   
 }

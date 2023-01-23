@@ -230,9 +230,9 @@ tbody {
     height: 280px;
 }
 
-.tableAbout, .tableEvolution, .tableMoves {
-    padding: 30px;
-    font-size: 20px;
+.tableAbout { 
+    padding: 0px 54px;
+    font-size: 16px;
     height: 340px;
 }
 
@@ -250,10 +250,12 @@ table tr {
 
 table td:first-child {
     width: 171px;
+    padding-top: 25px;
 }
 
 table td:last-child, td:nth-child(2), td:nth-child(3) {
     font-weight: bold;
+    padding-top: 25px;
 }
 
 .anchor-active {
@@ -265,7 +267,8 @@ table td:last-child, td:nth-child(2), td:nth-child(3) {
     display: flex;
     color: black;
     padding-top: 30px;
-    padding-left: 34px;
+    width: 87%;
+    padding-left: 59px;
 }
 
 .contentLeft {
@@ -284,10 +287,28 @@ table td:last-child, td:nth-child(2), td:nth-child(3) {
     border-radius: 13px;
     padding: 3px;
     width: 52%;
-  }
+}
   
-  .progressbar>div {
+.progressbar>div {
     background-color: orange;
     height: 10px;
     border-radius: 10px;
-  }
+}
+
+.moveContainer {
+    height: 288px;
+    margin: auto;
+    color: black;
+    display: flex;
+    flex-wrap: wrap;
+    overflow: scroll;
+    padding: 20px 20px 0 20px;
+    width: 86%;
+}
+
+.moves {
+    margin: 10px;
+    background-color: rgb(239, 234, 234);
+    padding: 2px 10px;
+    border-radius: 20px;
+}

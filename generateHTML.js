@@ -40,16 +40,14 @@ function generateHTMLDataNav() {
     return /*html*/ `
         <div class="data-card">
             <nav>
-                <a onclick="openLink(this)" class="anchor-active">About</a>
-                <a onclick="openLink(this)">Base Stats</a>
-                <a onclick="openLink(this)">Evolution</a>
-                <a onclick="openLink(this)">Moves</a>
+                <a onclick="showAbout(this)" class="anchor-active">About</a>
+                <a onclick="showStats(this)">Base Stats</a>
+                <a onclick="showMoves(this)">Moves</a>
             </nav>
             
             ${generateHTMLDataTableAbout()}
             ${generateHTMLDataBaseStats()}
-            ${generateHTMLDataTableEvolution()}
-            ${generateHTMLDataTableMoves()}
+            ${generateHTMLDataMoves()}
 
         </div>
     </div>`;
@@ -57,7 +55,7 @@ function generateHTMLDataNav() {
 
 function generateHTMLDataTableAbout() {
     return /*html*/ `
-        <table class="tableAbout" style="display:none">
+        <table class="tableAbout">
             <tr>
                 <td>Species</td>
                 <td>${pokemon['species']['genera']['7']['genus']}</td>
@@ -89,21 +87,9 @@ function generateHTMLDataBaseStats() {
        ${getStats()}`;
 }
 
-function generateHTMLDataTableEvolution() {
+function generateHTMLDataMoves() {
     return /*html*/ `
-        <table class="tableEvolution" style="display:none">
-            <tr>
-                <td>huhu><td>
-            </tr>
-        </table>`;
-}
-
-
-function generateHTMLDataTableMoves() {
-    return /*html*/ `
-        <table class="tableMoves" style="display:none">
-            <tr>
-                <td>what><td>
-            </tr>
-        </table>`;
+        <div class="moveContainer" style="display:none">
+            ${getMoves()}
+        </div>`;
 }
