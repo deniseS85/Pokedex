@@ -11,33 +11,52 @@ async function loadAllPokemon() {
     renderPokemonInfo();
 }
 
-
 function renderPokemonInfo() { 
     let cardcontainer = document.getElementById('card-container');
-       
+
     for (let i = 0; i < currentPokemon.length; i++) {
         pokemon = currentPokemon[i];
         
         cardcontainer.innerHTML += generateHTMLCard();
-    } 
+    }   
 }
 
 function generateHTMLCard() {
     return /*html*/ `
-        <div class="card" id="card" style="background-color:${changeBg()}; box-shadow:${changeBoxShadow()}">
-        <div class="headline">
-            <h2>${pokemon['name']}</h2>
-            <h2>${getIndex()}</h2>
-        </div>
+        <div class="card" style="background-color:${changeBg()}; box-shadow:${changeBoxShadow()}">
+            <div class="headline">
+                <h2>${pokemon['name']}</h2>
+                <h2>${getIndex()}</h2>
+            </div>
             <div class="card-content">
                 <div class="info-type">${gettype()}</div>
                 <div class="imageInfo">
                     <div class="img-bg" style="background-color:${changeBgItems()}">
-                        <img class="pokeImg" src="${pokemon['sprites']['other']['home']['front_default']}">
+                        <img onclick="openOverlay(this)" class="pokeImg" src="${pokemon['sprites']['other']['home']['front_default']}">
                     </div>
                 </div>
             </div>
+            <div class="infoOverlay" style="display: none;">
+                <div class="info-card" style="background-color:${changeBg()}">
+                    <div class="headlineInfoCard">
+                        <img class="arrow" onclick="closeOverlay(this)" src="img/arrow.png">
+                        <img src="img/heart.png">
+                    </div>
+                    <div class="namePokemon">
+                        <h2 class="name">${pokemon['name']}</h2>
+                        <h2>${getIndex()}</h2>
+                    </div>
+                    <div class="type">${gettype()}</div>
+                    <img class="imgInfoCard" src="${pokemon['sprites']['other']['home']['front_default']}">
+                    <div class="data-card"></div>
+                </div>
+            </div>
         </div>`;
+}
+
+function generateHTMLOverlay() {
+    return /*html*/ `
+        <div class="info-card" style="background-color:${changeBg()}"></div>`
 }
 
 function changeBg() {
@@ -147,10 +166,24 @@ function getIndex() {
 }
 
 function gettype() {
-    let infoType = '';
+    let isSecondType = '';
     for (let i = 0; i < pokemon['types'].length; i++) {
-        infoType += /*html*/ `
+        isSecondType += /*html*/ `
             <div class="type1" style="background-color:${changeBgItems()}">${pokemon['types'][i]['type']['name']}</div>`;
         }
-        return infoType;
+        return isSecondType;
+}
+
+function openOverlay(el) {
+    let overlay = el.closest('.card').querySelector('.infoOverlay');
+    overlay.style.display = 'flex';
+    document.getElementById('header').style.display = 'none';
+    document.body.style.overflow = 'hidden';
+}
+
+function closeOverlay(el) {
+    let overlay = el.closest('.card').querySelector('.infoOverlay');
+    overlay.style.display = 'none';
+    document.getElementById('header').style.display = '';
+    document.body.style.overflow = '';
 }
