@@ -6,7 +6,10 @@ async function loadAllPokemon() {
         let url = `https://pokeapi.co/api/v2/pokemon/${i}`;
         let response = await fetch(url);
         let pokemon = await response.json();
-        currentPokemon.push(pokemon); 
+        let speciesURL = pokemon['species']['url'];
+        let speciesResponse = await fetch(speciesURL);
+        pokemon['species'] = await speciesResponse.json();
+        currentPokemon.push(pokemon);
     }
     renderPokemonInfo();
 }
@@ -29,34 +32,71 @@ function generateHTMLCard() {
                 <h2>${getIndex()}</h2>
             </div>
             <div class="card-content">
-                <div class="info-type">${gettype()}</div>
+                <div class="info-type">${getType()}</div>
                 <div class="imageInfo">
                     <div class="img-bg" style="background-color:${changeBgItems()}">
                         <img onclick="openOverlay(this)" class="pokeImg" src="${pokemon['sprites']['other']['home']['front_default']}">
                     </div>
                 </div>
             </div>
-            <div class="infoOverlay" style="display: none;">
-                <div class="info-card" style="background-color:${changeBg()}">
-                    <div class="headlineInfoCard">
-                        <img class="arrow" onclick="closeOverlay(this)" src="img/arrow.png">
-                        <img src="img/heart.png">
-                    </div>
-                    <div class="namePokemon">
-                        <h2 class="name">${pokemon['name']}</h2>
-                        <h2>${getIndex()}</h2>
-                    </div>
-                    <div class="type">${gettype()}</div>
-                    <img class="imgInfoCard" src="${pokemon['sprites']['other']['home']['front_default']}">
-                    <div class="data-card"></div>
+            ${generateHTMLInfoCard()}`;
+}
+
+function generateHTMLInfoCard() {
+    return /*html*/ `
+        <div class="infoOverlay" style="display: none;">
+            <div class="info-card" style="background-color:${changeBg()}">
+                <div class="headlineInfoCard">
+                    <img class="arrow" onclick="closeOverlay(this)" src="img/arrow.png">
+                    <img onclick="changeHeartIcon(this)" class="heart" src="img/heart.png">
                 </div>
+                <div class="namePokemon">
+                    <h2 class="name">${pokemon['name']}</h2>
+                    <h2>${getIndex()}</h2>
+                </div>
+                <div class="type">${getType()}</div>
+                <img class="imgInfoCard" src="${pokemon['sprites']['other']['home']['front_default']}">
+                ${generateHTMLDataCard()}
             </div>
         </div>`;
 }
 
-function generateHTMLOverlay() {
+function generateHTMLDataCard() {
     return /*html*/ `
-        <div class="info-card" style="background-color:${changeBg()}"></div>`
+        <div class="data-card">
+            <nav>
+                <a href="#">About</a>
+                <a href="#">Base Stats</a>
+                <a href="#">Evolution</a>
+                <a href="#">Moves</a>
+            </nav>
+            <table>
+                <tr>
+                    <td>Species</td>
+                    <td>${pokemon['species']['genera']['7']['genus']}</td>
+                </tr>
+                <tr>
+                    <td>Height</td>
+                    <td>${pokemon['height']/10} m</td>
+                </tr>
+                <tr>
+                    <td>Weight</td>
+                    <td>${pokemon['weight']/10} kg</td>
+                </tr>
+                <tr>
+                    <td>Abilities</td>
+                    ${getAbility()}
+                </tr>
+                <tr>
+                    <td><b>Breeding</b></td>
+                </tr>
+                <tr>
+                    <td>Egg Groups</td>
+                    ${getEggGroup()}
+                </tr>
+            </table>
+        </div>
+    </div>`;
 }
 
 function changeBg() {
@@ -165,13 +205,42 @@ function getIndex() {
 
 }
 
-function gettype() {
+function getType() {
     let isSecondType = '';
     for (let i = 0; i < pokemon['types'].length; i++) {
         isSecondType += /*html*/ `
             <div class="type1" style="background-color:${changeBgItems()}">${pokemon['types'][i]['type']['name']}</div>`;
         }
         return isSecondType;
+}
+
+function getAbility() {
+    let isSecondAbility = '';
+    for (let i = 0; i < pokemon['abilities'].length; i++) {
+        isSecondAbility +=  /*html*/ `
+            <td>${pokemon['abilities'][i]['ability']['name']}&ensp;</td>`; 
+    } 
+    return isSecondAbility;
+}
+
+function getEggGroup() {
+    let eggGroup = '';
+    for (let i = 0; i < pokemon['species']['egg_groups'].length; i++) { 
+        eggGroup += /*html*/ `
+            <td>${pokemon['species']['egg_groups'][i]['name']}</td>`
+    }
+    return eggGroup;
+}
+
+function changeHeartIcon(el) {
+    let heart = el.closest('.headlineInfoCard').querySelector('.heart');
+
+    if (heart.src.match('img/heart.png')) {
+        heart.src = 'img/heart_active.png';
+    } else {
+        heart.src = 'img/heart.png';
+    }
+
 }
 
 function openOverlay(el) {

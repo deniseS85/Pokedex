@@ -5,7 +5,7 @@
 
 body {
     margin: 0;
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Raleway Regular', sans-serif;
     background-color: rgb(192,192,192);
 }
 
@@ -151,6 +151,7 @@ h2 {
     width: 500px;
     -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border: 1px solid black;
 }
 
 .headlineInfoCard {
@@ -162,7 +163,7 @@ h2 {
     margin-bottom: 30px;
 }
 
-.arrow {
+.arrow, .heart {
     cursor: pointer;
 }
 
@@ -184,6 +185,7 @@ h2 {
     width: 265px;
     margin-top: -65px;
     z-index: 1;
+    filter: drop-shadow(0 0 0.75rem white);
 }
 
 .type {
@@ -199,5 +201,52 @@ h2 {
     border-radius: 25px;
     margin-bottom: -20px;
     margin-top: -33px;
+    padding-top: 34px;
 }
 
+nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    width: 100%;
+    height: 50px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+nav a {
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+nav a:hover {
+   border-bottom: 4px solid black;
+   padding-bottom: 25px;
+}
+
+table {
+    padding: 30px;
+    font-size: 20px;
+    height: 340px;
+}
+
+table td {
+    color: black;
+}
+
+td::first-letter {
+    text-transform: uppercase;
+}
+
+table tr {
+    height: 34px;
+}
+
+table td:first-child {
+    width: 171px;
+}
+
+table td:last-child, td:nth-child(2), td:nth-child(3) {
+    font-weight: bold;
+}
