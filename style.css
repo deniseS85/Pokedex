@@ -233,7 +233,6 @@ tbody {
 .tableAbout { 
     padding: 0px 54px;
     font-size: 16px;
-    height: 340px;
 }
 
 table td {
@@ -311,4 +310,15 @@ table td:last-child, td:nth-child(2), td:nth-child(3) {
     background-color: rgb(239, 234, 234);
     padding: 2px 10px;
     border-radius: 20px;
+}
+
+.arrow-right {
+    margin-bottom: 82px;
+    cursor: pointer;
+}  
+
+.arrow-left {
+    width: 54px;
+    margin-bottom: 82px;
+    cursor: pointer;
 }

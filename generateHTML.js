@@ -18,7 +18,7 @@ function generateHTMLCard() {
 
 function generateHTMLInfoCard() {
     return /*html*/ `
-        <div class="infoOverlay" style="display: none;">
+        <div class="infoOverlay" id="infoOverlay" style="display: none;">
             <div class="info-card" style="background-color:${changeBg()}">
                 <div class="headlineInfoCard">
                     <img class="arrow" onclick="closeOverlay(this)" src="img/arrow.png">
@@ -29,20 +29,23 @@ function generateHTMLInfoCard() {
                     <h2>${getIndex()}</h2>
                 </div>
                 <div class="type">${getType()}</div>
-                <img class="imgInfoCard" src="${pokemon['sprites']['other']['home']['front_default']}">
+                <div>
+                    <img onclick="prePokemon()" class="arrow-left" src="img/arrow-left.png">
+                    <img class="imgInfoCard" src="${pokemon['sprites']['other']['home']['front_default']}">
+                    <img onclick="nextPokemon()" class="arrow-right" src="img/arrow-right.png">
+                </div>
                 ${generateHTMLDataNav()}
             </div>
         </div>`;
 }
 
-
 function generateHTMLDataNav() {
     return /*html*/ `
         <div class="data-card">
             <nav>
-                <a onclick="showAbout(this)" class="anchor-active">About</a>
-                <a onclick="showStats(this)">Base Stats</a>
-                <a onclick="showMoves(this)">Moves</a>
+                <a onclick="showAbout(this)" class="anchor-active linkAbout">About</a>
+                <a onclick="showStats(this)" class="linkStats">Base Stats</a>
+                <a onclick="showMoves(this)" class="linkMove">Moves</a>
             </nav>
             
             ${generateHTMLDataTableAbout()}

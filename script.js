@@ -127,7 +127,6 @@ function getIndex() {
     } else {
         return '#0' + index;
     }
-
 }
 
 function getType() {
@@ -214,35 +213,46 @@ function closeOverlay(el) {
 function showStats(el) {
     let stabsContainer = el.closest('.data-card').querySelectorAll('.statsContainer');
     el.closest('.data-card').querySelector('.tableAbout').style.display = 'none';
+    el.closest('.data-card').querySelector('.linkAbout').classList.remove('anchor-active');
     el.closest('.data-card').querySelector('.moveContainer').style.display = 'none';
+    el.closest('.data-card').querySelector('.linkMove').classList.remove('anchor-active');
+    el.closest('.data-card').querySelector('.linkStats').classList.add('anchor-active');
 
     for (let i = 0; i < stabsContainer.length; i++) {
         stabsContainer[i].style.display = 'flex';
-        
     }
 }
 
 function showMoves(el) {
     let stabsContainer = el.closest('.data-card').querySelectorAll('.statsContainer');
     el.closest('.data-card').querySelector('.moveContainer').style.display = 'flex';
-    el.closest('.data-card').querySelector('.statsContainer').style.display = 'none';
+    el.closest('.data-card').querySelector('.linkMove').classList.add('anchor-active');
     el.closest('.data-card').querySelector('.tableAbout').style.display = 'none';
+    el.closest('.data-card').querySelector('.linkAbout').classList.remove('anchor-active');
+    el.closest('.data-card').querySelector('.linkStats').classList.remove('anchor-active');
 
     for (let i = 0; i < stabsContainer.length; i++) {
         stabsContainer[i].style.display = 'none';
-        
     }
 }
 
 function showAbout(el) {
     let stabsContainer = el.closest('.data-card').querySelectorAll('.statsContainer');
     el.closest('.data-card').querySelector('.tableAbout').style.display = 'flex';
+    el.closest('.data-card').querySelector('.linkAbout').classList.add('anchor-active');
+    el.closest('.data-card').querySelector('.linkStats').classList.remove('anchor-active');
     el.closest('.data-card').querySelector('.moveContainer').style.display = 'none';
-    el.closest('.data-card').querySelector('.statsContainer').style.display = 'none';
-
+    el.closest('.data-card').querySelector('.linkMove').classList.remove('anchor-active');
+   
     for (let i = 0; i < stabsContainer.length; i++) {
         stabsContainer[i].style.display = 'none';
-        
     }
-   
+}
+
+function prePokemon() {
+
+}
+
+function nextPokemon() {
+
 }
