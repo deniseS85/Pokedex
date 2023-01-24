@@ -1,6 +1,4 @@
 let currentPokemon = [];
-let currentPokemonIndex = 0;
-let pokemonNames = [];
 
 async function loadAllPokemon() {
 
@@ -12,7 +10,6 @@ async function loadAllPokemon() {
         let speciesResponse = await fetch(speciesURL);
         pokemon['species'] = await speciesResponse.json();
         currentPokemon.push(pokemon);
-        pokemonNames.push(pokemon['name']);
     }
     renderPokemonInfo();
 }
@@ -122,7 +119,7 @@ function changeBoxShadow() {
          return '-2px -2px 20px 2px var(--lightrosa), 2px 2px 20px 2px var(--lightrosa);';
      }
 }
-
+/*todo */
 function getIndex() {
     let index = pokemon['id'];
     if (index < 10) {
@@ -161,8 +158,8 @@ function getEggGroup() {
 
 function getStats() {
     let stats = '';
-    for (let i = 0; i < pokemon['stats'].length; i++) {
 
+    for (let i = 0; i < pokemon['stats'].length; i++) {
         stats += /*html*/ `
             <div class="statsContainer" style="display:none">
                 <div class="contentLeft">
@@ -253,40 +250,35 @@ function showAbout(el) {
 }
 
 function searchPokemon(el) {
-    let input = el.closest('.header').querySelector('.inputField').value.toLowerCase();
+    let searchPokemon = el.value.toLowerCase();
     let cardcontainer = document.getElementById('card-container');
-  
-    for (let i = 0; i < pokemonNames.length; i++) {
-        let names = pokemonNames[i];
-       
-        if(names.charAt(0).includes(input)) { 
-            cardcontainer.innerHTML = '';
-            cardcontainer.innerHTML += generateHTMLCard(names);
+    let childCardContainer = cardcontainer.querySelectorAll('.card');
 
+    for (let i = 0; i < childCardContainer.length; i++) {
+        let pokemonName = childCardContainer[i].querySelector('.headline h2').innerHTML;
+
+        if (pokemonName.substring(0, searchPokemon.length) == searchPokemon) {
+           childCardContainer[i].style.display = 'flex';
+        } else {
+            childCardContainer[i].style.display = 'none';
         }
-    }
+    } 
 }
-        
-  
-
 /* 
-function prePokemon() {
-    if (currentPokemonIndex === 0) {
-      currentPokemonIndex = currentPokemon.length - 1;
-    } else {
-      currentPokemonIndex--;
-    }
-    generateHTMLInfoCard(currentPokemonIndex);
-  }
+function prePokemon(el) {
+    1. zum aktuellen InfoOverlay springen
+    2. aktuelles InfoOverlay ausblenden
+    3. zum InfoCard springen
+    4. auf Schwesterelement springen
+    5. auf Kind-InfoOverlay springen
+    6. InfoOverlay anzeigen
 
-  function nextPokemon() {
-    if (currentPokemonIndex === currentPokemon.length - 1) {
-      currentPokemonIndex = 0;
-    } else {
-      currentPokemonIndex++;
-    }
-    generateHTMLInfoCard(currentPokemonIndex);
-  }  */
+}
+
+function nextPokemon(el) {
+    
+
+}  */
 
 function doNotCloseOverlay(event) {
     event.stopPropagation();

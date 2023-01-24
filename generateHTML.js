@@ -2,7 +2,7 @@ function generateHTMLCard() {
     return /*html*/ `
         <div class="card" style="background-color:${changeBg()}; box-shadow:${changeBoxShadow()}">
             <div class="headline">
-                <h2 id="pokemonName">${pokemon['name']}</h2>
+                <h2>${pokemon['name']}</h2>
                 <h2>${getIndex()}</h2>
             </div>
             <div class="card-content">
@@ -29,7 +29,7 @@ function generateHTMLInfoCard() {
                     <h2>${getIndex()}</h2>
                 </div>
                 <div class="type">${getType()}</div>
-                <div>
+                <div class="middleContent">
                     <img onclick="prePokemon(this)" class="arrow-left" src="img/arrow-left.png">
                     <img class="imgInfoCard" src="${pokemon['sprites']['other']['home']['front_default']}">
                     <img onclick="nextPokemon(this)" class="arrow-right" src="img/arrow-right.png">
