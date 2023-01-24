@@ -12,9 +12,15 @@
 <body onload="loadAllPokemon()">
     
     <div id="header" class="header">
-        <h1>Pokedex</h1>
+        <div class="title"> 
+            <h1>Pokedex</h1>
+        </div>
+        <div class="inputContainer">
+            <input class="inputField" type="search" placeholder="Search Pokémon..." onkeyup="searchPokemon(this)">
+        </div>
+       
     </div>
-
+   
     <div id="card-container" class="card-container"></div>
    
 </body>

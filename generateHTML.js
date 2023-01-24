@@ -2,7 +2,7 @@ function generateHTMLCard() {
     return /*html*/ `
         <div class="card" style="background-color:${changeBg()}; box-shadow:${changeBoxShadow()}">
             <div class="headline">
-                <h2>${pokemon['name']}</h2>
+                <h2 id="pokemonName">${pokemon['name']}</h2>
                 <h2>${getIndex()}</h2>
             </div>
             <div class="card-content">
@@ -18,8 +18,8 @@ function generateHTMLCard() {
 
 function generateHTMLInfoCard() {
     return /*html*/ `
-        <div class="infoOverlay" id="infoOverlay" style="display: none;">
-            <div class="info-card" style="background-color:${changeBg()}">
+        <div class="infoOverlay" id="infoOverlay" onclick="closeOverlay(this)" style="display: none;">
+            <div class="info-card" style="background-color:${changeBg()}" onclick="doNotCloseOverlay(event)">
                 <div class="headlineInfoCard">
                     <img class="arrow" onclick="closeOverlay(this)" src="img/arrow.png">
                     <img onclick="changeHeartIcon(this)" class="heart" src="img/heart.png">
@@ -30,9 +30,9 @@ function generateHTMLInfoCard() {
                 </div>
                 <div class="type">${getType()}</div>
                 <div>
-                    <img onclick="prePokemon()" class="arrow-left" src="img/arrow-left.png">
+                    <img onclick="prePokemon(this)" class="arrow-left" src="img/arrow-left.png">
                     <img class="imgInfoCard" src="${pokemon['sprites']['other']['home']['front_default']}">
-                    <img onclick="nextPokemon()" class="arrow-right" src="img/arrow-right.png">
+                    <img onclick="nextPokemon(this)" class="arrow-right" src="img/arrow-right.png">
                 </div>
                 ${generateHTMLDataNav()}
             </div>

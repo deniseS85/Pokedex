@@ -1,4 +1,6 @@
 let currentPokemon = [];
+let currentPokemonIndex = 0;
+let pokemonNames = [];
 
 async function loadAllPokemon() {
 
@@ -10,6 +12,7 @@ async function loadAllPokemon() {
         let speciesResponse = await fetch(speciesURL);
         pokemon['species'] = await speciesResponse.json();
         currentPokemon.push(pokemon);
+        pokemonNames.push(pokemon['name']);
     }
     renderPokemonInfo();
 }
@@ -249,10 +252,42 @@ function showAbout(el) {
     }
 }
 
-function prePokemon() {
+function searchPokemon(el) {
+    let input = el.closest('.header').querySelector('.inputField').value.toLowerCase();
+    let cardcontainer = document.getElementById('card-container');
+  
+    for (let i = 0; i < pokemonNames.length; i++) {
+        let names = pokemonNames[i];
+       
+        if(names.charAt(0).includes(input)) { 
+            cardcontainer.innerHTML = '';
+            cardcontainer.innerHTML += generateHTMLCard(names);
 
+        }
+    }
 }
+        
+  
 
-function nextPokemon() {
+/* 
+function prePokemon() {
+    if (currentPokemonIndex === 0) {
+      currentPokemonIndex = currentPokemon.length - 1;
+    } else {
+      currentPokemonIndex--;
+    }
+    generateHTMLInfoCard(currentPokemonIndex);
+  }
 
+  function nextPokemon() {
+    if (currentPokemonIndex === currentPokemon.length - 1) {
+      currentPokemonIndex = 0;
+    } else {
+      currentPokemonIndex++;
+    }
+    generateHTMLInfoCard(currentPokemonIndex);
+  }  */
+
+function doNotCloseOverlay(event) {
+    event.stopPropagation();
 }
