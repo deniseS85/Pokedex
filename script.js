@@ -264,21 +264,34 @@ function searchPokemon(el) {
         }
     } 
 }
-/* 
+
 function prePokemon(el) {
-    1. zum aktuellen InfoOverlay springen
-    2. aktuelles InfoOverlay ausblenden
-    3. zum InfoCard springen
-    4. auf Schwesterelement springen
-    5. auf Kind-InfoOverlay springen
-    6. InfoOverlay anzeigen
+    let currentOverlay = el.closest('.infoOverlay');
+    let preInfoOverlay = currentOverlay.closest('.card').previousElementSibling.querySelector('.infoOverlay');
+   
+    currentOverlay.style.display = 'none';
+    preInfoOverlay.style.display = 'flex';
 
-}
+    let firsChildOverlay = currentOverlay.firstElementChild;
 
+    console.log(firsChildOverlay);
+
+   /*  if (firsChildOverlay) {
+        firsChildOverlay = currentOverlay.closest('.card').lastElementChild.querySelector('.infoOverlay')
+    } else {
+       
+    } */
+   
+} 
+ 
 function nextPokemon(el) {
-    
+    let currentOverlay = el.closest('.infoOverlay');
+    let nextInfoOverlay = currentOverlay.closest('.card').nextElementSibling.querySelector('.infoOverlay');
+   
+    currentOverlay.style.display = 'none';
+    nextInfoOverlay.style.display = 'flex';
 
-}  */
+} 
 
 function doNotCloseOverlay(event) {
     event.stopPropagation();
