@@ -184,7 +184,7 @@ h2 {
     align-items: center;
     padding: 20px 40px;
     border-radius: 25px;
-    height: 740px;
+    height: 93vh;
     width: 500px;
     -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
@@ -193,6 +193,24 @@ h2 {
 	animation-name: fadeInOpacity;
 	animation-timing-function: ease-in;
 	animation-duration: 225ms;
+}
+/* Scrollbalken */
+::-webkit-scrollbar {
+    width: 10px;
+}
+  
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+}
+   
+::-webkit-scrollbar-thumb {
+    background: red; 
+    border-radius: 10px;
+}
+  
+::-webkit-scrollbar-thumb:hover {
+    background: #b30000; 
 }
 
 @keyframes fadeInOpacity {
@@ -245,7 +263,7 @@ h2 {
 }
 
 .data-card {
-    height: 392px;
+    height: 49vh;
     width: 580px;
     background-color: white;
     border-radius: 25px;
@@ -422,8 +440,8 @@ table td:last-child, td:nth-child(2), td:nth-child(3) {
     }
     .data-card {
         width: 100vw;
-        margin-top: -25px;
-        height: 55vh;
+        margin-top: -3vh;
+        height: 48.5vh;
     }
     .imgInfoCard {
         width: 177px;
@@ -441,7 +459,7 @@ table td:last-child, td:nth-child(2), td:nth-child(3) {
         width: 80%;
     }
     .middleContent {
-        margin-top: 117px;
+        margin-top: 101px;
         width: 80%;
     }
 
