@@ -10,18 +10,15 @@ async function loadAllPokemon() {
         let speciesResponse = await fetch(speciesURL);
         pokemon['species'] = await speciesResponse.json();
         currentPokemon.push(pokemon);
+        renderPokemonInfo(i-1);
     }
-    renderPokemonInfo();
 }
 
-function renderPokemonInfo() { 
+function renderPokemonInfo(i) { 
     let cardcontainer = document.getElementById('card-container');
 
-    for (let i = 0; i < currentPokemon.length; i++) {
-        pokemon = currentPokemon[i];
-        
-        cardcontainer.innerHTML += generateHTMLCard();
-    }   
+    pokemon = currentPokemon[i];
+    cardcontainer.innerHTML += generateHTMLCard();
 }
 
 function changeBg() {
@@ -119,14 +116,9 @@ function changeBoxShadow() {
          return '-2px -2px 20px 2px var(--lightrosa), 2px 2px 20px 2px var(--lightrosa);';
      }
 }
-/*todo */
+
 function getIndex() {
-    let index = pokemon['id'];
-    if (index < 10) {
-        return '#00' + index;
-    } else {
-        return '#0' + index;
-    }
+    return '#' + String(pokemon['id']).padStart(3, '0');
 }
 
 function getType() {
@@ -267,27 +259,28 @@ function searchPokemon(el) {
 
 function prePokemon(el) {
     let currentOverlay = el.closest('.infoOverlay');
-    let preInfoOverlay = currentOverlay.closest('.card').previousElementSibling.querySelector('.infoOverlay');
-   
+    let preInfoOverlay;
+
+    if (currentOverlay.closest('.card').previousElementSibling == null) {
+        preInfoOverlay = currentOverlay.closest('.card-container').lastElementChild.querySelector('.infoOverlay');
+    } else {
+        preInfoOverlay = currentOverlay.closest('.card').previousElementSibling.querySelector('.infoOverlay');
+    }
+    
     currentOverlay.style.display = 'none';
     preInfoOverlay.style.display = 'flex';
-
-    let firsChildOverlay = currentOverlay.firstElementChild;
-
-    console.log(firsChildOverlay);
-
-   /*  if (firsChildOverlay) {
-        firsChildOverlay = currentOverlay.closest('.card').lastElementChild.querySelector('.infoOverlay')
-    } else {
-       
-    } */
-   
 } 
  
 function nextPokemon(el) {
     let currentOverlay = el.closest('.infoOverlay');
-    let nextInfoOverlay = currentOverlay.closest('.card').nextElementSibling.querySelector('.infoOverlay');
-   
+    let nextInfoOverlay;
+
+    if (currentOverlay.closest('.card').nextElementSibling == null) {
+        nextInfoOverlay = currentOverlay.closest('.card-container').firstElementChild.querySelector('.infoOverlay');
+    } else {
+        nextInfoOverlay = currentOverlay.closest('.card').nextElementSibling.querySelector('.infoOverlay');
+    }
+    
     currentOverlay.style.display = 'none';
     nextInfoOverlay.style.display = 'flex';
 

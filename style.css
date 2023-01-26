@@ -389,3 +389,80 @@ table td:last-child, td:nth-child(2), td:nth-child(3) {
     width: 50px;
     height: 50px;
 }
+
+@media (max-width: 655px) {
+    .title {
+        font-size: 18px;
+        width: 0;
+        margin-left: 10px;
+    }
+    .inputContainer {
+        margin-right: 21px;
+    }
+    .inputField {
+        width: 160px;
+        font-size: 16px;
+    }
+    .inputField::placeholder { 
+        font-size: 14px;
+    }
+}
+
+@media (min-width: 330px) and (max-width: 581px) {
+    .info-card {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        height: 100vh;
+        width: 100vw;
+        padding: 0;
+    }
+    .data-card {
+        width: 100vw;
+        margin-top: -25px;
+        height: 55vh;
+    }
+    .imgInfoCard {
+        width: 177px;
+    }
+    .headlineInfoCard {
+        margin: 10px;
+        margin-bottom: 20px;
+        width: 80%;
+    }
+    .namePokemon {
+        width: 80%;
+        margin-bottom: 20px;
+    }
+    .type {
+        width: 80%;
+    }
+    .middleContent {
+        margin-top: 117px;
+        width: 80%;
+    }
+
+    .tableAbout {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .statsContainer {
+        width: 100%;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .contentLeft {
+        width: 35%;
+    }
+    .progressbar {
+        width: 46%;
+    }
+    .moveContainer {
+        width: 100%;
+        height: 72%;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
