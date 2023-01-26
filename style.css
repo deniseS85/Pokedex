@@ -1,6 +1,7 @@
 @font-face {
     font-family: 'Pokemon Hollow';
-    src:  url('fonts/PokemonHollow.woff') format('woff'),
+    src:    url('fonts/PokemonHollow.woff') format('woff'),
+            url('fonts/PokemonHollow.woff') format('truetype'); /* Safari, Android, iOS */
 }
 
 body {
